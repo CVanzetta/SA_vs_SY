@@ -298,8 +298,22 @@ const APP_CONFIG = {
             optionB: {
                 title: "Le Lapin",
                 description: "Sensible, créatif, sociable, expressif"
-            }
-        },
+            }        },
+        {
+            id: 23,
+            text: "Quelle vibe t'attire le plus ?",
+            weight: 3,
+            hasImage: true,
+            optionA: {
+                title: "Cette vibe",
+                description: "",
+                image: "images/sydney.PNG"
+            },
+            optionB: {
+                title: "Cette vibe",
+                description: "",
+                image: "images/sabrina.PNG"
+            }        },
     ],
     
     results: {
