@@ -25,7 +25,10 @@ const questionMapping = [
     { a: 'sabrina', b: 'sydney' },    // Q17: Sabrina à gauche
     { a: 'sydney', b: 'sabrina' },    // Q18: Sydney à gauche
     { a: 'sydney', b: 'sabrina' },    // Q19: Sydney à gauche
-    { a: 'sydney', b: 'sabrina' }     // Q20: Sydney à gauche (image)
+    { a: 'sydney', b: 'sabrina' },    // Q20: Sydney à gauche (taille)
+    { a: 'sydney', b: 'sabrina' },    // Q21: Sydney à gauche (silhouette)
+    { a: 'sydney', b: 'sabrina' },    // Q22: Sydney à gauche (astrologie)
+    { a: 'sydney', b: 'sabrina' }     // Q23: Sydney à gauche (image)
 ];
 
 // Éléments DOM
@@ -82,6 +85,9 @@ function loadQuestion(index) {
         if (!imgA) {
             imgA = document.createElement('img');
             imgA.className = 'card-image';
+            imgA.onerror = function() {
+                this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999">Image A</text></svg>';
+            };
             elements.cardA.querySelector('.card-content').prepend(imgA);
         }
         imgA.src = question.optionA.image;
@@ -91,6 +97,9 @@ function loadQuestion(index) {
         if (!imgB) {
             imgB = document.createElement('img');
             imgB.className = 'card-image';
+            imgB.onerror = function() {
+                this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999">Image B</text></svg>';
+            };
             elements.cardB.querySelector('.card-content').prepend(imgB);
         }
         imgB.src = question.optionB.image;

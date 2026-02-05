@@ -263,6 +263,45 @@ const APP_CONFIG = {
         },
         {
             id: 20,
+            text: "Tu es plus attiré par quelle taille chez une femme ?",
+            weight: 1,
+            optionA: {
+                title: "Plutôt taille moyenne",
+                description: "Autour de 1m60"
+            },
+            optionB: {
+                title: "Plutôt petite",
+                description: "Autour de 1m50"
+            }
+        },
+        {
+            id: 21,
+            text: "Silhouette qui t'attire le plus :",
+            weight: 2,
+            optionA: {
+                title: "Athlétique avec des formes",
+                description: "Sportive et tonique"
+            },
+            optionB: {
+                title: "Fine et légère",
+                description: "Silhouette élancée"
+            }
+        },
+        {
+            id: 22,
+            text: "D'après l'astrologie chinoise, tu es plus attiré par quel type de signe ?",
+            weight: 1,
+            optionA: {
+                title: "Le Buffle",
+                description: "Stable, fiable, travailleur, ancré"
+            },
+            optionB: {
+                title: "Le Lapin",
+                description: "Sensible, créatif, sociable, expressif"
+            }
+        },
+        {
+            id: 23,
             text: "Quelle vibe t'attire le plus ?",
             weight: 3,
             hasImage: true,
