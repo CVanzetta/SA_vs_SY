@@ -260,6 +260,22 @@ const APP_CONFIG = {
                 title: "Créative, expressive, passionnée",
                 description: "Vie intense et inspirante"
             }
+        },
+        {
+            id: 20,
+            text: "Quelle vibe t'attire le plus ?",
+            weight: 3,
+            hasImage: true,
+            optionA: {
+                title: "Cette vibe",
+                description: "",
+                image: "images/sydney.jpg"
+            },
+            optionB: {
+                title: "Cette vibe",
+                description: "",
+                image: "images/sabrina.jpg"
+            }
         }
     ],
     

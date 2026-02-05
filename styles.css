@@ -175,6 +175,25 @@ body {
     color: #555;
 }
 
+/* Images dans les cartes */
+.card-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.card.has-image {
+    padding: 20px;
+}
+
+.card.has-image .card-title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
 /* VS Separator */
 .vs-separator {
     font-size: 2rem;

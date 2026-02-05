@@ -24,7 +24,8 @@ const questionMapping = [
     { a: 'sabrina', b: 'sydney' },    // Q16: Sabrina à gauche
     { a: 'sabrina', b: 'sydney' },    // Q17: Sabrina à gauche
     { a: 'sydney', b: 'sabrina' },    // Q18: Sydney à gauche
-    { a: 'sydney', b: 'sabrina' }     // Q19: Sydney à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q19: Sydney à gauche
+    { a: 'sydney', b: 'sabrina' }     // Q20: Sydney à gauche (image)
 ];
 
 // Éléments DOM
@@ -71,13 +72,49 @@ function loadQuestion(index) {
     // Mettre à jour le texte de la question
     elements.questionText.textContent = question.text;
     
-    // Mettre à jour la carte A
-    elements.cardATitle.textContent = question.optionA.title;
-    elements.cardADescription.textContent = question.optionA.description;
-    
-    // Mettre à jour la carte B
-    elements.cardBTitle.textContent = question.optionB.title;
-    elements.cardBDescription.textContent = question.optionB.description;
+    // Gérer les questions avec images
+    if (question.hasImage) {
+        elements.cardA.classList.add('has-image');
+        elements.cardB.classList.add('has-image');
+        
+        // Créer ou mettre à jour l'image A
+        let imgA = elements.cardA.querySelector('.card-image');
+        if (!imgA) {
+            imgA = document.createElement('img');
+            imgA.className = 'card-image';
+            elements.cardA.querySelector('.card-content').prepend(imgA);
+        }
+        imgA.src = question.optionA.image;
+        
+        // Créer ou mettre à jour l'image B
+        let imgB = elements.cardB.querySelector('.card-image');
+        if (!imgB) {
+            imgB = document.createElement('img');
+            imgB.className = 'card-image';
+            elements.cardB.querySelector('.card-content').prepend(imgB);
+        }
+        imgB.src = question.optionB.image;
+        
+        elements.cardATitle.textContent = question.optionA.title;
+        elements.cardADescription.textContent = '';
+        elements.cardBTitle.textContent = question.optionB.title;
+        elements.cardBDescription.textContent = '';
+    } else {
+        // Question sans image
+        elements.cardA.classList.remove('has-image');
+        elements.cardB.classList.remove('has-image');
+        
+        // Supprimer les images si elles existent
+        const imgA = elements.cardA.querySelector('.card-image');
+        const imgB = elements.cardB.querySelector('.card-image');
+        if (imgA) imgA.remove();
+        if (imgB) imgB.remove();
+        
+        elements.cardATitle.textContent = question.optionA.title;
+        elements.cardADescription.textContent = question.optionA.description;
+        elements.cardBTitle.textContent = question.optionB.title;
+        elements.cardBDescription.textContent = question.optionB.description;
+    }
     
     // Mettre à jour la progression
     updateProgress();
