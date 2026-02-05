@@ -6,7 +6,8 @@ let userChoices = [];
 let shuffledQuestions = [];
 let questionMapping = [];
 
-// Fonction pour mélanger un tableau
+// Fonction pour mélanger un tableau (algorithme Fisher-Yates)
+// Garantit que chaque question apparaît exactement UNE FOIS
 function shuffleArray(array) {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -48,7 +49,7 @@ const elements = {
 function init() {
     elements.appTitle.textContent = APP_CONFIG.title;
     
-    // Mélanger les questions et générer le mapping aléatoire
+    // Mélanger les questions (chaque question apparaît une seule fois)
     shuffledQuestions = shuffleArray(APP_CONFIG.questions);
     questionMapping = generateRandomMapping(shuffledQuestions);
     
