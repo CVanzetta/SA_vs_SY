@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Préfères - App de Comparaison</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1 id="app-title">Tu Préfères ?</h1>
+            <div class="score-container">
+                <div class="score-item">
+                    <span class="score-label">Option A</span>
+                    <span class="score-value" id="score-a">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Option B</span>
+                    <span class="score-value" id="score-b">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+                <span class="progress-text" id="progress-text">Question 1/10</span>
+            </div>
+
+            <div class="question-container">
+                <h2 class="question-text" id="question-text"></h2>
+                
+                <div class="cards-container">
+                    <div class="card card-a" id="card-a" data-option="a">
+                        <div class="card-content">
+                            <h3 class="card-title" id="card-a-title"></h3>
+                            <p class="card-description" id="card-a-description"></p>
+                        </div>
+                    </div>
+
+                    <div class="vs-separator">VS</div>
+
+                    <div class="card card-b" id="card-b" data-option="b">
+                        <div class="card-content">
+                            <h3 class="card-title" id="card-b-title"></h3>
+                            <p class="card-description" id="card-b-description"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="results-screen" id="results-screen" style="display: none;">
+            <h2>Résultats</h2>
+            <div class="results-content">
+                <div class="winner-announcement" id="winner-announcement"></div>
+                <div class="results-details">
+                    <div class="result-item">
+                        <h3>Option A</h3>
+                        <div class="result-bar">
+                            <div class="result-bar-fill result-bar-a" id="result-bar-a"></div>
+                        </div>
+                        <span class="result-score" id="result-score-a"></span>
+                    </div>
+                    <div class="result-item">
+                        <h3>Option B</h3>
+                        <div class="result-bar">
+                            <div class="result-bar-fill result-bar-b" id="result-bar-b"></div>
+                        </div>
+                        <span class="result-score" id="result-score-b"></span>
+                    </div>
+                </div>
+                <button class="btn-restart" id="btn-restart">Recommencer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
