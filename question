@@ -1,0 +1,212 @@
+{
+  "version": "1.0",
+  "profiles": {
+    "sydney": { "label": "Sydney", "traits": ["chill", "sport", "posé", "introverti"] },
+    "sabrina": { "label": "Sabrina", "traits": ["créative", "sociale", "expressive"] }
+  },
+  "blocks": [
+    {
+      "id": "energy_daily",
+      "title": "Énergie & quotidien",
+      "questions": [
+        {
+          "id": "q1",
+          "weight": 2,
+          "question": "En fin de journée tu préfères :",
+          "options": [
+            { "id": "a", "label": "Rentrer, te poser tranquille (douche, repas, série)", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Mettre de la musique et avancer sur un truc (projet, idée, plan)", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q2",
+          "weight": 2,
+          "question": "Le week-end idéal :",
+          "options": [
+            { "id": "a", "label": "Sport, balade, routine calme", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Voir du monde, bouger, activités créatives", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q3",
+          "weight": 1,
+          "question": "Tu es attiré par quelqu’un plutôt :",
+          "options": [
+            { "id": "a", "label": "Fiable, régulière, structurée", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Spontanée, imaginative, flexible", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q4",
+          "weight": 2,
+          "question": "À la maison, elle serait plus du genre à :",
+          "options": [
+            { "id": "a", "label": "Faire du sport / bien-être / routine santé", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Dessiner, écrire, tester des idées créatives", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q5",
+          "weight": 2,
+          "question": "L’énergie que tu préfères chez quelqu’un :",
+          "options": [
+            { "id": "a", "label": "Apaisante, stable, rassurante", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Vivante, expressive, stimulante", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q6",
+          "weight": 1,
+          "question": "Elle recharge ses batteries comment :",
+          "options": [
+            { "id": "a", "label": "Temps seule, calme, peu de bruit", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "En parlant, créant, ou voyant du monde", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q7",
+          "weight": 2,
+          "question": "Relation idéale pour toi :",
+          "options": [
+            { "id": "a", "label": "Stable, simple, prévisible (sécurité)", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Dynamique, stimulante (nouveauté)", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "passions_free_time",
+      "title": "Passions & temps libre",
+      "questions": [
+        {
+          "id": "q8",
+          "weight": 2,
+          "question": "Tu es plus attiré par quelqu’un qui :",
+          "options": [
+            { "id": "a", "label": "A une routine sport / santé / performance", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "A une activité créative (dessin, musique, écriture, photo…)", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q9",
+          "weight": 1,
+          "question": "Soirée série à deux :",
+          "options": [
+            { "id": "a", "label": "On regarde en silence, moment calme et posé", "points": { "sydney": 1, "sabrina": 1 } },
+            { "id": "b", "label": "On commente, on rigole, on parle pendant", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q10",
+          "weight": 1,
+          "question": "Soirée à deux :",
+          "options": [
+            { "id": "a", "label": "Repas simple", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Musique, ambiance, discussion, jeux", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q11",
+          "weight": 1,
+          "question": "Tu es plus attiré par :",
+          "options": [
+            { "id": "a", "label": "Quelqu’un de discret, sans besoin d’attention", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Quelqu’un qui prend de la place socialement", "points": { "sydney": 1, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q12",
+          "weight": 2,
+          "question": "Activité à deux préférée :",
+          "options": [
+            { "id": "a", "label": "Sortie nature / balade / sport", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Cuisiner ensemble et tester des recettes / créer à la maison", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        },
+        {
+          "id": "q13",
+          "weight": 1,
+          "question": "Tu préfères quelqu’un qui :",
+          "options": [
+            { "id": "a", "label": "Aime la simplicité et le calme", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Aime s’exprimer et partager ses idées", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lifestyle",
+      "title": "Lifestyle",
+      "questions": [
+        {
+          "id": "q14",
+          "weight": 1,
+          "question": "Vacances idéales :",
+          "options": [
+            { "id": "a", "label": "Nature, calme, lac / montagne", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Ville, cafés, activités, ambiance", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q15",
+          "weight": 1,
+          "question": "Style vestimentaire :",
+          "options": [
+            { "id": "a", "label": "Simple, confortable, naturel", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Soigné, stylé, looks travaillés", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q16",
+          "weight": 1,
+          "question": "Réseaux sociaux :",
+          "options": [
+            { "id": "a", "label": "Plutôt discret, peu de posts", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Partage souvent, stories, posts", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q17",
+          "weight": 1,
+          "question": "Rythme de vie :",
+          "options": [
+            { "id": "a", "label": "Structuré, planifié", "points": { "sydney": 1, "sabrina": 0 } },
+            { "id": "b", "label": "Spontané, ça bouge", "points": { "sydney": 0, "sabrina": 1 } }
+          ]
+        },
+        {
+          "id": "q18",
+          "weight": 2,
+          "question": "Énergie qui t’attire le plus :",
+          "options": [
+            { "id": "a", "label": "Naturelle, posée, \"girl next door\"", "points": { "sydney": 2, "sabrina": 0 } },
+            { "id": "b", "label": "Solaire, expressive, \"star vibe\"", "points": { "sydney": 0, "sabrina": 2 } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projection",
+      "title": "Projection relation",
+      "questions": [
+        {
+          "id": "q19",
+          "weight": 3,
+          "question": "Au final, tu te vois plus avec quelqu’un :",
+          "options": [
+            { "id": "a", "label": "Posée, stable, fiable", "points": { "sydney": 3, "sabrina": 0 } },
+            { "id": "b", "label": "Créative, expressive, passionnée", "points": { "sydney": 0, "sabrina": 3 } }
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum_points",
+    "result_rules": [
+      { "if": "sydney > sabrina", "result": "Sydney" },
+      { "if": "sabrina > sydney", "result": "Sabrina" },
+      { "if": "sydney == sabrina", "result": "Égalité (mix des deux vibes)" }
+    ]
+  }
+}

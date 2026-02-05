@@ -1,8 +1,31 @@
 // État de l'application
 let currentQuestionIndex = 0;
-let scoreA = 0;
-let scoreB = 0;
+let scoreSydney = 0;
+let scoreSabrina = 0;
 let userChoices = [];
+
+// Mapping pour savoir quelle option correspond à qui dans chaque question
+const questionMapping = [
+    { a: 'sydney', b: 'sabrina' },    // Q1: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q2: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q3: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q4: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q5: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q6: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q7: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q8: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q9: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q10: Sabrina à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q11: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q12: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q13: Sabrina à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q14: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q15: Sydney à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q16: Sabrina à gauche
+    { a: 'sabrina', b: 'sydney' },    // Q17: Sabrina à gauche
+    { a: 'sydney', b: 'sabrina' },    // Q18: Sydney à gauche
+    { a: 'sydney', b: 'sabrina' }     // Q19: Sydney à gauche
+];
 
 // Éléments DOM
 const elements = {
@@ -68,21 +91,31 @@ function loadQuestion(index) {
 function handleChoice(choice) {
     const question = APP_CONFIG.questions[currentQuestionIndex];
     const weight = question.weight || 1;
+    const mapping = questionMapping[currentQuestionIndex];
+    
+    // Déterminer qui gagne des points (Sydney ou Sabrina)
+    const selectedPerson = mapping[choice];
     
     // Enregistrer le choix
     userChoices.push({
         questionId: question.id,
         choice: choice,
+        selectedPerson: selectedPerson,
         weight: weight
     });
     
-    // Mettre à jour le score
+    // Mettre à jour le score selon la vraie personne
+    if (selectedPerson === 'sydney') {
+        scoreSydney += weight;
+    } else {
+        scoreSabrina += weight;
+    }
+    
+    // Animation visuelle
     if (choice === 'a') {
-        scoreA += weight;
         elements.cardA.classList.add('selected');
         elements.cardB.classList.add('not-selected');
     } else {
-        scoreB += weight;
         elements.cardB.classList.add('selected');
         elements.cardA.classList.add('not-selected');
     }
@@ -99,8 +132,8 @@ function handleChoice(choice) {
 
 // Mettre à jour l'affichage du score
 function updateScoreDisplay() {
-    elements.scoreADisplay.textContent = scoreA;
-    elements.scoreBDisplay.textContent = scoreB;
+    elements.scoreADisplay.textContent = scoreSydney;
+    elements.scoreBDisplay.textContent = scoreSabrina;
 }
 
 // Mettre à jour la barre de progression
@@ -122,14 +155,14 @@ function showResults() {
     const totalPoints = APP_CONFIG.questions.reduce((sum, q) => sum + (q.weight || 1), 0);
     
     // Calculer les pourcentages
-    const percentA = (scoreA / totalPoints) * 100;
-    const percentB = (scoreB / totalPoints) * 100;
+    const percentSydney = (scoreSydney / totalPoints) * 100;
+    const percentSabrina = (scoreSabrina / totalPoints) * 100;
     
     // Déterminer le gagnant
     let winnerText;
-    if (scoreA > scoreB) {
+    if (scoreSydney > scoreSabrina) {
         winnerText = APP_CONFIG.results.winnerA;
-    } else if (scoreB > scoreA) {
+    } else if (scoreSabrina > scoreSydney) {
         winnerText = APP_CONFIG.results.winnerB;
     } else {
         winnerText = APP_CONFIG.results.tie;
@@ -138,22 +171,22 @@ function showResults() {
     // Afficher le gagnant
     document.getElementById('winner-announcement').textContent = winnerText;
     
-    // Afficher les scores détaillés
-    document.getElementById('result-score-a').textContent = `${scoreA}/${totalPoints} points (${percentA.toFixed(1)}%)`;
-    document.getElementById('result-score-b').textContent = `${scoreB}/${totalPoints} points (${percentB.toFixed(1)}%)`;
+    // Afficher les scores détaillés (Sydney en premier, Sabrina en second)
+    document.getElementById('result-score-a').textContent = `${scoreSydney}/${totalPoints} points (${percentSydney.toFixed(1)}%)`;
+    document.getElementById('result-score-b').textContent = `${scoreSabrina}/${totalPoints} points (${percentSabrina.toFixed(1)}%)`;
     
     // Animer les barres de progression
     setTimeout(() => {
-        document.getElementById('result-bar-a').style.width = percentA + '%';
-        document.getElementById('result-bar-b').style.width = percentB + '%';
+        document.getElementById('result-bar-a').style.width = percentSydney + '%';
+        document.getElementById('result-bar-b').style.width = percentSabrina + '%';
     }, 100);
 }
 
 // Recommencer le quiz
 function restart() {
     currentQuestionIndex = 0;
-    scoreA = 0;
-    scoreB = 0;
+    scoreSydney = 0;
+    scoreSabrina = 0;
     userChoices = [];
     
     // Réinitialiser l'affichage
