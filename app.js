@@ -3,33 +3,28 @@ let currentQuestionIndex = 0;
 let scoreSydney = 0;
 let scoreSabrina = 0;
 let userChoices = [];
+let shuffledQuestions = [];
+let questionMapping = [];
 
-// Mapping pour savoir quelle option correspond à qui dans chaque question
-const questionMapping = [
-    { a: 'sydney', b: 'sabrina' },    // Q1: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q2: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q3: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q4: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q5: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q6: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q7: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q8: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q9: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q10: Sabrina à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q11: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q12: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q13: Sabrina à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q14: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q15: Sydney à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q16: Sabrina à gauche
-    { a: 'sabrina', b: 'sydney' },    // Q17: Sabrina à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q18: Sydney à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q19: Sydney à gauche
-    { a: 'sydney', b: 'sabrina' },    // Q20: Sydney à gauche (taille)
-    { a: 'sydney', b: 'sabrina' },    // Q21: Sydney à gauche (silhouette)
-    { a: 'sydney', b: 'sabrina' },    // Q22: Sydney à gauche (astrologie)
-    { a: 'sydney', b: 'sabrina' }     // Q23: Sydney à gauche (image)
-];
+// Fonction pour mélanger un tableau
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Fonction pour générer le mapping aléatoire
+function generateRandomMapping(questions) {
+    return questions.map(() => {
+        // 50% de chance que Sydney soit à gauche ou à droite
+        return Math.random() < 0.5 
+            ? { a: 'sydney', b: 'sabrina' }
+            : { a: 'sabrina', b: 'sydney' };
+    });
+}
 
 // Éléments DOM
 const elements = {
@@ -52,6 +47,11 @@ const elements = {
 // Initialisation de l'application
 function init() {
     elements.appTitle.textContent = APP_CONFIG.title;
+    
+    // Mélanger les questions et générer le mapping aléatoire
+    shuffledQuestions = shuffleArray(APP_CONFIG.questions);
+    questionMapping = generateRandomMapping(shuffledQuestions);
+    
     loadQuestion(currentQuestionIndex);
     setupEventListeners();
 }
@@ -65,65 +65,35 @@ function setupEventListeners() {
 
 // Charger une question
 function loadQuestion(index) {
-    if (index >= APP_CONFIG.questions.length) {
+    if (index >= shuffledQuestions.length) {
         showResults();
         return;
     }
 
-    const question = APP_CONFIG.questions[index];
+    const question = shuffledQuestions[index];
+    const mapping = questionMapping[index];
+    
+    // Appliquer le mapping pour afficher les bonnes options
+    const displayA = mapping.a === 'sydney' ? question.optionA : question.optionB;
+    const displayB = mapping.b === 'sabrina' ? question.optionB : question.optionA;
     
     // Mettre à jour le texte de la question
     elements.questionText.textContent = question.text;
     
-    // Gérer les questions avec images
-    if (question.hasImage) {
-        elements.cardA.classList.add('has-image');
-        elements.cardB.classList.add('has-image');
-        
-        // Créer ou mettre à jour l'image A
-        let imgA = elements.cardA.querySelector('.card-image');
-        if (!imgA) {
-            imgA = document.createElement('img');
-            imgA.className = 'card-image';
-            imgA.onerror = function() {
-                this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999">Image A</text></svg>';
-            };
-            elements.cardA.querySelector('.card-content').prepend(imgA);
-        }
-        imgA.src = question.optionA.image;
-        
-        // Créer ou mettre à jour l'image B
-        let imgB = elements.cardB.querySelector('.card-image');
-        if (!imgB) {
-            imgB = document.createElement('img');
-            imgB.className = 'card-image';
-            imgB.onerror = function() {
-                this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999">Image B</text></svg>';
-            };
-            elements.cardB.querySelector('.card-content').prepend(imgB);
-        }
-        imgB.src = question.optionB.image;
-        
-        elements.cardATitle.textContent = question.optionA.title;
-        elements.cardADescription.textContent = '';
-        elements.cardBTitle.textContent = question.optionB.title;
-        elements.cardBDescription.textContent = '';
-    } else {
-        // Question sans image
-        elements.cardA.classList.remove('has-image');
-        elements.cardB.classList.remove('has-image');
-        
-        // Supprimer les images si elles existent
-        const imgA = elements.cardA.querySelector('.card-image');
-        const imgB = elements.cardB.querySelector('.card-image');
-        if (imgA) imgA.remove();
-        if (imgB) imgB.remove();
-        
-        elements.cardATitle.textContent = question.optionA.title;
-        elements.cardADescription.textContent = question.optionA.description;
-        elements.cardBTitle.textContent = question.optionB.title;
-        elements.cardBDescription.textContent = question.optionB.description;
-    }
+    // Question sans image
+    elements.cardA.classList.remove('has-image');
+    elements.cardB.classList.remove('has-image');
+    
+    // Supprimer les images si elles existent
+    const imgA = elements.cardA.querySelector('.card-image');
+    const imgB = elements.cardB.querySelector('.card-image');
+    if (imgA) imgA.remove();
+    if (imgB) imgB.remove();
+    
+    elements.cardATitle.textContent = displayA.title;
+    elements.cardADescription.textContent = displayA.description;
+    elements.cardBTitle.textContent = displayB.title;
+    elements.cardBDescription.textContent = displayB.description;
     
     // Mettre à jour la progression
     updateProgress();
@@ -135,7 +105,7 @@ function loadQuestion(index) {
 
 // Gérer le choix de l'utilisateur
 function handleChoice(choice) {
-    const question = APP_CONFIG.questions[currentQuestionIndex];
+    const question = shuffledQuestions[currentQuestionIndex];
     const weight = question.weight || 1;
     const mapping = questionMapping[currentQuestionIndex];
     
@@ -184,9 +154,9 @@ function updateScoreDisplay() {
 
 // Mettre à jour la barre de progression
 function updateProgress() {
-    const progress = ((currentQuestionIndex + 1) / APP_CONFIG.questions.length) * 100;
+    const progress = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100;
     elements.progress.style.width = progress + '%';
-    elements.progressText.textContent = `Question ${currentQuestionIndex + 1}/${APP_CONFIG.questions.length}`;
+    elements.progressText.textContent = `Question ${currentQuestionIndex + 1}/${shuffledQuestions.length}`;
 }
 
 // Afficher les résultats
@@ -198,7 +168,7 @@ function showResults() {
     elements.resultsScreen.style.display = 'flex';
     
     // Calculer le total des points possibles
-    const totalPoints = APP_CONFIG.questions.reduce((sum, q) => sum + (q.weight || 1), 0);
+    const totalPoints = shuffledQuestions.reduce((sum, q) => sum + (q.weight || 1), 0);
     
     // Calculer les pourcentages
     const percentSydney = (scoreSydney / totalPoints) * 100;
@@ -234,6 +204,10 @@ function restart() {
     scoreSydney = 0;
     scoreSabrina = 0;
     userChoices = [];
+    
+    // Remélanger les questions
+    shuffledQuestions = shuffleArray(APP_CONFIG.questions);
+    questionMapping = generateRandomMapping(shuffledQuestions);
     
     // Réinitialiser l'affichage
     updateScoreDisplay();
